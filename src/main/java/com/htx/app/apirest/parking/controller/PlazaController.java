@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PlazaController {
 
-    private final ParkingService parkingService;
+	private final ParkingService parkingService;
 
-    @GetMapping("/disponibilidad")
-    public ResponseEntity<DisponibilidadResponse> disponibilidad() {
-        return ResponseEntity.ok(parkingService.consultarDisponibilidad());
-    }
+	@GetMapping("/disponibilidad")
+	public ResponseEntity<DisponibilidadResponse> disponibilidad() {
+		return ResponseEntity.ok(parkingService.consultarDisponibilidad());
+	}
 }

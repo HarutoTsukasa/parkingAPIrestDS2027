@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class VehiculoController {
 
-    private final ParkingService parkingService;
+	private final ParkingService parkingService;
 
-    @PostMapping("/ingreso")
-    public ResponseEntity<SalidaResponse> ingresar(@Valid @RequestBody IngresoRequest request) {
-        SalidaResponse response = parkingService.registrarIngreso(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
+	@PostMapping("/ingreso")
+	public ResponseEntity<SalidaResponse> ingresar(@Valid @RequestBody IngresoRequest request) {
+		SalidaResponse response = parkingService.registrarIngreso(request);
+		return ResponseEntity.status(HttpStatus.CREATED).body(response);
+	}
 
-    @PostMapping("/salida/{placa}")
-    public ResponseEntity<SalidaResponse> salir(@PathVariable String placa) {
-        SalidaResponse response = parkingService.registrarSalida(placa);
-        return ResponseEntity.ok(response);
-    }
+	@PostMapping("/salida/{placa}")
+	public ResponseEntity<SalidaResponse> salir(@PathVariable String placa) {
+		SalidaResponse response = parkingService.registrarSalida(placa);
+		return ResponseEntity.ok(response);
+	}
 }

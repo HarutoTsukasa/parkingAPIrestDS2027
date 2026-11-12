@@ -5,27 +5,29 @@ import lombok.*;
 
 @Entity
 @Table(name = "plaza")
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class Plaza {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false, unique = true)
-    private Integer numero;
+	@Column(nullable = false, unique = true)
+	private Integer numero;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
-    private TipoVehiculo tipo;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, length = 20)
+	private TipoVehiculo tipo;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 10)
-    private EstadoPlaza estado;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, length = 10)
+	private EstadoPlaza estado;
 
-    public enum EstadoPlaza {
-        LIBRE, OCUPADA
-    }
+	public enum EstadoPlaza {
+		LIBRE, OCUPADA
+	}
 }

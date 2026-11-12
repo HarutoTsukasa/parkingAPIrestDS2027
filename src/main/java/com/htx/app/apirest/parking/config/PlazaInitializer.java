@@ -21,40 +21,36 @@ import java.util.List;
 @Slf4j
 public class PlazaInitializer implements ApplicationRunner {
 
-    private final PlazaRepository plazaRepository;
-    private final EspaciosInicialesProperties props;
+	private final PlazaRepository plazaRepository;
+	private final EspaciosInicialesProperties props;
 
-    @Override
-    public void run(ApplicationArguments args) {
-        long existentes = plazaRepository.count();
-        if (existentes > 0) {
-            log.info("PlazaInitializer: {} plazas ya existen, no se siembra nada.", existentes);
-            return;
-        }
+	@Override
+	public void run(ApplicationArguments args) {
+		long existentes = plazaRepository.count();
+		if (existentes > 0) {
+			log.info("PlazaInitializer: {} plazas ya existen, no se siembra nada.", existentes);
+			return;
+		}
 
-        List<Plaza> plazas = new ArrayList<>();
-        int numero = 1;
+		List<Plaza> plazas = new ArrayList<>();
+		int numero = 1;
 
-        for (int i = 0; i < props.getCarro(); i++) {
-            plazas.add(nueva(numero++, TipoVehiculo.CARRO));
-        }
-        for (int i = 0; i < props.getMoto(); i++) {
-            plazas.add(nueva(numero++, TipoVehiculo.MOTO));
-        }
-        for (int i = 0; i < props.getBicicleta(); i++) {
-            plazas.add(nueva(numero++, TipoVehiculo.BICICLETA));
-        }
+		for (int i = 0; i < props.getCarro(); i++) {
+			plazas.add(nueva(numero++, TipoVehiculo.CARRO));
+		}
+		for (int i = 0; i < props.getMoto(); i++) {
+			plazas.add(nueva(numero++, TipoVehiculo.MOTO));
+		}
+		for (int i = 0; i < props.getBicicleta(); i++) {
+			plazas.add(nueva(numero++, TipoVehiculo.BICICLETA));
+		}
 
-        plazaRepository.saveAll(plazas);
-        log.info("PlazaInitializer: sembradas {} plazas (carro={}, moto={}, bicicleta={}).",
-                plazas.size(), props.getCarro(), props.getMoto(), props.getBicicleta());
-    }
+		plazaRepository.saveAll(plazas);
+		log.info("PlazaInitializer: sembradas {} plazas (carro={}, moto={}, bicicleta={}).", plazas.size(),
+				props.getCarro(), props.getMoto(), props.getBicicleta());
+	}
 
-    private Plaza nueva(int numero, TipoVehiculo tipo) {
-        return Plaza.builder()
-                .numero(numero)
-                .tipo(tipo)
-                .estado(Plaza.EstadoPlaza.LIBRE)
-                .build();
-    }
+	private Plaza nueva(int numero, TipoVehiculo tipo) {
+		return Plaza.builder().numero(numero).tipo(tipo).estado(Plaza.EstadoPlaza.LIBRE).build();
+	}
 }

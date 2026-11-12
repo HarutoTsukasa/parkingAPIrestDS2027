@@ -12,14 +12,14 @@ import java.util.List;
 
 public interface PlazaRepository extends JpaRepository<Plaza, Long> {
 
-    List<Plaza> findByEstado(Plaza.EstadoPlaza estado);
+	List<Plaza> findByEstado(Plaza.EstadoPlaza estado);
 
-    /**
-     * Bloqueo pesimista: impide que dos transacciones lean y asignen la misma plaza.
-     * Filtra por estado y tipo de vehículo; ordena por número para asignar siempre la más baja disponible.
-     */
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT p FROM Plaza p WHERE p.estado = :estado AND p.tipo = :tipo ORDER BY p.numero ASC")
-    List<Plaza> findLibresPorTipoWithLock(@Param("estado") Plaza.EstadoPlaza estado,
-                                          @Param("tipo") TipoVehiculo tipo);
+	/**
+	 * Bloqueo pesimista: impide que dos transacciones lean y asignen la misma
+	 * plaza. Filtra por estado y tipo de vehículo; ordena por número para asignar
+	 * siempre la más baja disponible.
+	 */
+	@Lock(LockModeType.PESSIMISTIC_WRITE)
+	@Query("SELECT p FROM Plaza p WHERE p.estado = :estado AND p.tipo = :tipo ORDER BY p.numero ASC")
+	List<Plaza> findLibresPorTipoWithLock(@Param("estado") Plaza.EstadoPlaza estado, @Param("tipo") TipoVehiculo tipo);
 }

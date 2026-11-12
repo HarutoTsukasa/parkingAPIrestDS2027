@@ -7,15 +7,16 @@ import lombok.Getter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Getter @Builder
+@Getter
+@Builder
 public class SalidaResponse {
-    private String placa;
-    private TipoVehiculo tipo;
-    private Integer plazaNumero;
-    private LocalDateTime fechaIngreso;
-    private LocalDateTime fechaSalida;
-    private long fraccionesCobradas;
-    private BigDecimal tarifaHoraCop;
-    private BigDecimal tarifaFraccionCop;
-    private BigDecimal totalCop;
+	private String placa;
+	private TipoVehiculo tipo;
+	private Integer plazaNumero;
+	private LocalDateTime fechaIngreso;
+	private LocalDateTime fechaSalida;
+	private long fraccionesCobradas;
+	private BigDecimal tarifaHoraCop;
+	private BigDecimal tarifaFraccionCop;
+	private BigDecimal totalCop;
 }

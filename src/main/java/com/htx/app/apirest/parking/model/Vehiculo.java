@@ -18,6 +18,10 @@ public class Vehiculo {
     @Column(nullable = false, unique = true, length = 10)
     private String placa;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private TipoVehiculo tipo;
+
     @Column(name = "fecha_ingreso", nullable = false)
     private LocalDateTime fechaIngreso;
 

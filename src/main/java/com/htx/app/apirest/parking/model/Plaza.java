@@ -18,6 +18,10 @@ public class Plaza {
     private Integer numero;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private TipoVehiculo tipo;
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 10)
     private EstadoPlaza estado;
 
